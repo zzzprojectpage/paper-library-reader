@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self' blob:; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' blob:; img-src 'self' data: blob: https:; font-src 'self' data: blob:; connect-src 'self' https://gutendex.com https://gutenberg.org https://www.gutenberg.org https://*.gutenberg.org; frame-src 'self' blob:; worker-src 'self' blob:; manifest-src 'self'"
+    >
+    <meta name="theme-color" content="#28241f">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Paper Library">
+    <meta name="format-detection" content="telephone=no">
+    <meta
+      name="description"
+      content="A private, accessible library for EPUB, DRM-free MOBI, and PDF books."
+    >
+    <title>Paper Library</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/icon-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    <link rel="stylesheet" href="styles/app.css?v=14">
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to content</a>
+
+    <div id="offlineBanner" class="network-banner" role="status" hidden>
+      You are offline. Books saved in Own Books remain available.
+    </div>
+
+    <header class="app-header">
+      <a class="brand" href="#/library" aria-label="Paper Library home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21.5v-16Z"/>
+            <path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5a2.5 2.5 0 0 1 2.5 2.5v-16Z"/>
+          </svg>
+        </span>
+        <span>
+          <strong>Paper Library</strong>
+          <small>Your quiet reading place</small>
+        </span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Main navigation">
+        <a href="#/library" data-route-link="library">Discover</a>
+        <a href="#/own-books" data-route-link="own-books">Own Books</a>
+      </nav>
+
+      <div class="header-actions" aria-label="Library actions">
+        <button id="searchButton" class="button button-quiet" type="button">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <circle cx="10.8" cy="10.8" r="6.8"/>
+            <path d="m16 16 4.5 4.5"/>
+          </svg>
+          <span>Search</span>
+        </button>
+        <button id="refreshButton" class="button button-quiet" type="button">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M20 6v5h-5"/>
+            <path d="M18.6 15.5A8 8 0 1 1 19.8 9"/>
+          </svg>
+          <span>Refresh</span>
+        </button>
+        <button id="uploadButton" class="button button-primary" type="button">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M12 16V4"/>
+            <path d="m7.5 8.5 4.5-4.5 4.5 4.5"/>
+            <path d="M5 14v5h14v-5"/>
+          </svg>
+          <span>Upload book</span>
+        </button>
+        <input
+          id="bookFileInput"
+          class="visually-hidden"
+          type="file"
+          accept=".epub,.mobi,.pdf,application/epub+zip,application/x-mobipocket-ebook,application/vnd.amazon.ebook,application/pdf"
+          multiple
+        >
+      </div>
+    </header>
+
+    <main id="app" tabindex="-1">
+      <section class="startup-state" aria-labelledby="startupTitle">
+        <div class="state-content">
+          <div class="spinner" aria-hidden="true"></div>
+          <h1 id="startupTitle">Starting Paper Library...</h1>
+          <p>
+            If this message remains visible, confirm JavaScript is enabled and
+            refresh this HTTPS page.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Private by design: uploaded books stay in this browser.</span>
+      <button id="clearDataButton" class="link-button" type="button">Clear local data</button>
+    </footer>
+
+    <div id="toastRegion" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <div id="srAnnouncements" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="vendor/jszip.min.js"></script>
+    <script src="vendor/epub.min.js"></script>
+    <script type="module" src="src/app.js?v=14"></script>
+  </body>
+</html>
